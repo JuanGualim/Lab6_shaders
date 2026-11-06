@@ -1,5 +1,6 @@
 //! Fragment shaders de los tres cuerpos celestes y los datos que comparten (`Uniforms`).
 
+pub mod gas_giant;
 pub mod noise;
 pub mod rocky;
 pub mod star;
@@ -11,15 +12,17 @@ use crate::pipeline::Fragment;
 pub enum Body {
     Star,
     Rocky,
+    GasGiant,
 }
 
 impl Body {
-    pub const ALL: [Body; 2] = [Body::Star, Body::Rocky];
+    pub const ALL: [Body; 3] = [Body::Star, Body::Rocky, Body::GasGiant];
 
     pub fn name(self) -> &'static str {
         match self {
             Body::Star => "Pyrene (estrella)",
             Body::Rocky => "Thalassa (planeta rocoso)",
+            Body::GasGiant => "Nyxara (gigante gaseoso)",
         }
     }
 
@@ -28,6 +31,7 @@ impl Body {
         match self {
             Body::Star => "star",
             Body::Rocky => "rocky",
+            Body::GasGiant => "gas",
         }
     }
 
@@ -41,6 +45,7 @@ impl Body {
 pub struct Params {
     pub star: star::StarParams,
     pub rocky: rocky::RockyParams,
+    pub gas: gas_giant::GasParams,
 }
 
 /// Datos iguales para todos los vértices y fragmentos de un cuadro.
@@ -90,5 +95,6 @@ pub fn fragment_shader(body: Body, f: &Fragment, u: &Uniforms) -> Vec3 {
     match body {
         Body::Star => star::shade(&s, u.time, &u.params.star),
         Body::Rocky => rocky::shade(&s, u.time, &u.params.rocky),
+        Body::GasGiant => gas_giant::shade(&s, u.time, &u.params.gas),
     }
 }
