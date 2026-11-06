@@ -4,8 +4,10 @@
 //! y fragment shaders). Una única esfera (`assets/sphere.obj`) se dibuja como tres cuerpos
 //! celestes distintos cambiando solo el fragment shader.
 
+pub mod export;
 pub mod framebuffer;
 pub mod math;
 pub mod mesh;
 pub mod pipeline;
+pub mod scene;
 pub mod shaders;
