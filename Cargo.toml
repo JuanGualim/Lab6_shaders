@@ -1,0 +1,13 @@
+[package]
+name = "lab6_shaders"
+version = "0.1.0"
+edition = "2024"
+description = "Laboratorio 6: planetas y estrellas con fragment shaders en un software renderer en CPU"
+
+[dependencies]
+raylib = { version = "6.0.0", features = ["SUPPORT_IMAGE_GENERATION"] }
+rayon = "1.12.0"
+
+[dev-dependencies]
+# Solo para comprobar que el OpenSimplex2 propio (src/shaders/noise.rs) da los mismos valores.
+fastnoise-lite = "1.1.1"
