@@ -7,4 +7,5 @@
 pub mod framebuffer;
 pub mod math;
 pub mod mesh;
+pub mod pipeline;
 pub mod shaders;
